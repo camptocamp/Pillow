@@ -726,6 +726,21 @@ _blend(ImagingObject* self, PyObject* args)
 				     (float) alpha));
 }
 
+static PyObject*
+_blend_veloland(ImagingObject* self, PyObject* args)
+{
+    ImagingObject* imagep1;
+    ImagingObject* imagep2;
+
+    if (!PyArg_ParseTuple(args, "O!O!",
+			  &Imaging_Type, &imagep1,
+			  &Imaging_Type, &imagep2))
+	return NULL;
+
+    return PyImagingNew(ImagingBlendVeloland(imagep1->image, imagep2->image));
+}
+
+
 /* -------------------------------------------------------------------- */
 /* METHODS								*/
 /* -------------------------------------------------------------------- */
@@ -3168,6 +3183,7 @@ static PyMethodDef functions[] = {
     /* Object factories */
     {"alpha_composite", (PyCFunction)_alpha_composite, 1},
     {"blend", (PyCFunction)_blend, 1},
+    {"blend_veloland", (PyCFunction)_blend_veloland, 1},
     {"fill", (PyCFunction)_fill, 1},
     {"new", (PyCFunction)_new, 1},
 

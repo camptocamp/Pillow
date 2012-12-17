@@ -2021,6 +2021,21 @@ def blend(im1, im2, alpha):
     return im1._new(core.blend(im1.im, im2.im, alpha))
 
 ##
+# Blend Veloland im2 over im1.
+#
+# @param im1 The first image.
+# @param im2 The second image.  Must have the same mode and size as
+#    the first image.
+# @return An Image object.
+
+def blend_veloland(im1, im2):
+    "Blend Veloland im2 over im1."
+
+    im1.load()
+    im2.load()
+    return im1._new(core.blend_veloland(im1.im, im2.im))
+
+##
 # Creates a new image by interpolating between two input images,
 # using the mask as alpha.
 #
